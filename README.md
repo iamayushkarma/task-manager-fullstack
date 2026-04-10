@@ -43,10 +43,53 @@ A simple full-stack Task Manager application built to demonstrate core frontend 
 
 ## 📁 Project Structure
 
-```
-project/
-├── client/   # React frontend
-├── server/   # Express backend
+```plaintext
+task-manager-fullstack/
+├── client/
+│   ├── public/
+│   │   ├── favicon.svg
+│   │   └── icons.svg
+│   ├── src/
+│   │   ├── assets/
+│   │   │   ├── hero.png
+│   │   │   ├── react.svg
+│   │   │   └── vite.svg
+│   │   ├── components/
+│   │   │   ├── TaskForm.tsx
+│   │   │   ├── TaskItem.tsx
+│   │   │   └── TaskList.tsx
+│   │   ├── services/
+│   │   │   └── task.api.ts
+│   │   ├── types/
+│   │   │   └── task.ts
+│   │   ├── App.tsx
+│   │   ├── index.css
+│   │   └── main.tsx
+│   ├── .env
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.ts
+│
+├── server/
+│   ├── src/
+│   │   ├── controllers/
+│   │   │   └── task.controller.js
+│   │   ├── data/
+│   │   │   └── tasks.js
+│   │   ├── middleware/
+│   │   │   └── error.middleware.js
+│   │   ├── routes/
+│   │   │   └── task.routes.js
+│   │   ├── utils/
+│   │   │   ├── api-error.js
+│   │   │   ├── api-response.js
+│   │   │   └── async-handler.js
+│   │   └── index.js
+│   ├── .env
+│   └── package.json
+│
+├── .gitignore
+└── README.md
 ```
 
 ---
@@ -143,6 +186,15 @@ http://localhost:5173
 - Minimal UI focus (functionality prioritized as per assignment)
 
 ---
+
+## ⚖️ Assumptions & Trade-offs
+
+- The application uses **in-memory storage** for tasks to keep the solution simple and within the assignment’s time constraints. Data will reset when the server restarts.
+- No authentication or user management is implemented, as it was considered out of scope for this exercise.
+- The UI is intentionally kept minimal, focusing on functionality, clarity, and usability rather than advanced design.
+- The backend uses a **single flexible PATCH endpoint** to handle both status updates and title edits instead of separate endpoints, to keep the API simple and practical.
+- Error handling is implemented at a basic level to demonstrate structure without adding unnecessary complexity.
+- The solution prioritizes **clean structure and readability** over adding additional features beyond the assignment scope.
 
 ## ✅ What This Demonstrates
 
