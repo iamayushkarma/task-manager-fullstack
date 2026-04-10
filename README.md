@@ -56,7 +56,7 @@ project/
 ### 1. Clone the repository
 
 ```
-git clone <your-repo-link>
+git clone https://github.com/iamayushkarma/task-manager-fullstack.git
 cd project
 ```
 
