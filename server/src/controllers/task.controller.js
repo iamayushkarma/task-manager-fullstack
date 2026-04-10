@@ -11,10 +11,20 @@ const getTasks = asyncHandler(async (req, res) => {
 
 // POST
 const createTask = asyncHandler(async (req, res) => {
-  const { title } = req.body;
+  let { title } = req.body;
 
-  if (!title) {
+  if (!title || !title.trim()) {
     throw new ApiError(400, "Title is required");
+  }
+
+  title = title.trim();
+
+  const exists = tasks.some(
+    (t) => t.title.toLowerCase() === title.toLowerCase(),
+  );
+
+  if (exists) {
+    throw new ApiError(400, "Task already exists");
   }
 
   const newTask = {

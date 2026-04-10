@@ -29,18 +29,29 @@ const App = () => {
   useEffect(() => {
     fetchTasks();
   }, []);
-
   const handleAdd = async (title: string) => {
+    const trimmed = title.trim();
+
+    if (!trimmed) return;
+    const exists = tasks.some(
+      (t) => t.title.toLowerCase() === trimmed.toLowerCase(),
+    );
+
+    if (exists) {
+      toast.error("Task already exists");
+      return;
+    }
+
     const id = toast.loading("Adding…");
+
     try {
-      const newTask = await createTask(title);
+      const newTask = await createTask(trimmed);
       setTasks((prev) => [newTask, ...prev]);
       toast.success("Task added", { id });
-    } catch {
-      toast.error("Failed to add task", { id });
+    } catch (err: any) {
+      toast.error(err?.response?.data?.message || "Failed to add task", { id });
     }
   };
-
   const handleToggle = async (task: Task) => {
     try {
       const updated = await updateTask(task.id, {
